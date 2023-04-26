@@ -62,7 +62,10 @@ int _printf(const char *format, ...)
 	va_end(list);
 
 	for (i = 0; i < str_size; i++)
+	{
+		if (str[i] == '%' && str_size == i + 1)
+			return (-1);
 		putchar(str[i]);
-
+	}
 	return (str_size);
 }
