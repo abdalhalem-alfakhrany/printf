@@ -11,6 +11,8 @@ int s_handler(char *str, va_list *list)
 	char *arg;
 	int l;
 
+	if (!str || !list)
+		return (-1);
 	arg = va_arg(*list, char *);
 	if (!arg)
 	{

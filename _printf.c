@@ -17,6 +17,8 @@ int handel_specifires(va_list *list, const char *format, char *str)
 		{'S', c_handler}
 	};
 
+	if (!format || !list || !str)
+		return (-1);
 	/*TODO: may format ahs null char inside it use strlen to calculate size */
 	while (format[i])
 	{
