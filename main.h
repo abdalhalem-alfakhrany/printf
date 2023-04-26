@@ -3,10 +3,11 @@
 #include "stdio.h"
 #include "stdlib.h"
 #include "stdarg.h"
+#include "string.h"
 
 typedef struct specifier_handler specifier_handler;
 /**
- * specifier_handler - struct to store specifier and itshandeler
+ * struct specifier_handler - struct to store specifier and its handeler
  * @specifier: the specifier char
  * @handler: function pointer to handel spacifier
  */
@@ -19,5 +20,7 @@ struct specifier_handler
 int _printf(const char *format, ...);
 
 int c_handler(char *, va_list *);
+int s_handler(char *, va_list *);
+int percentage_handler(char *, va_list *);
 
 #endif
