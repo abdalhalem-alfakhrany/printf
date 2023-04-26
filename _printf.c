@@ -12,7 +12,7 @@ int handel_specifires(va_list *list, const char *format, char *str)
 	int str_size = 0, i = 0, j = 0;
 	specifier_handler handlers[] = {
 		{'c', c_handler},
-		{'%', percentage_handler},
+		/*{'%', percentage_handler},*/
 		{'s', s_handler},
 		{'S', c_handler}
 	};

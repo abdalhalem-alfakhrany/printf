@@ -22,6 +22,6 @@ int handel_specifires(va_list *list, const char *format, char *str);
 
 int c_handler(char *, va_list *);
 int s_handler(char *, va_list *);
-int percentage_handler(char *, va_list *);
+/* int percentage_handler(char *, va_list *); */
 
 #endif
