@@ -1,21 +1,16 @@
 #include "main.h"
 
-int _printf(const char *format, ...)
+int handel_specifires(va_list *list, const char *format, char *str)
 {
-	va_list list;
-	char str[1024];
 	int str_size = 0, i = 0, j = 0;
 	
 	specifier_handler handlers[] =
 	{
 		{'c', c_handler},
+		{'%', percentage_handler},
 		{'S', c_handler}
 	};
 
-	if (!format)
-		return (-1);
-
-	va_start(list, format);
 	/*TODO: may format ahs null char inside it use strlen to calculate size */
 	while (format[i])
 	{
@@ -26,13 +21,14 @@ int _printf(const char *format, ...)
 			continue;
 		}
 		i++;
+		/*
 		if (format[i] == '%')
 		{
-			/*TODO: % may need to be scaped */
+			/*TODO: % may need to be scaped 
 			str[str_size++] = '%';
 			i++;
 			continue;
-		}
+		}*/
 		for (j = 0; ;j++)
 		{
 			if (handlers[j].specifier == 'S')
@@ -44,6 +40,19 @@ int _printf(const char *format, ...)
 			}
 		}
 	}
+}
+
+int _printf(const char *format, ...)
+{
+	va_list list;
+	char str[1024];
+	int str_size = 0;
+
+	if (!format)
+		return (-1);
+
+	va_start(list, format);
+	str_size = handel_specifires(&list, format, str);
 	va_end(list);
 	
 	for (i = 0; i < str_size; i++)
