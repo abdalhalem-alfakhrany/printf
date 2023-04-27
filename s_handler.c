@@ -17,6 +17,7 @@ int s_handler(char *str, va_list *list)
 	if (!arg)
 	{
 		char *n = "(null)";
+
 		memcpy(str, n, 6);
 		str += 6;
 		return (6);

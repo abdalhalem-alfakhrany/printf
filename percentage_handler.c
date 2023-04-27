@@ -8,8 +8,6 @@
  */
 int percentage_handler(char *str, va_list *list)
 {
-	if (!str || !list)
-		return (-1);
 	(void) list;
 	*str = '%';
 	str++;
