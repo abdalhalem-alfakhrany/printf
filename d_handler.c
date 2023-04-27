@@ -1,5 +1,10 @@
 #include "main.h"
-
+/**
+ * d_handler - handles d specifier
+ * @str: buffer
+ * @list: variadic list of args
+ * Return: number of digits
+ */
 int d_handler(char *str, va_list *list)
 {
 	int x = va_arg(*list, int), number_size = 0, i = 0, mod = 0;
@@ -24,7 +29,7 @@ int d_handler(char *str, va_list *list)
 			number_size++;
 		}
 
-		while(x > 0)
+		while (x > 0)
 		{
 			mod = x % 10;
 			x = x / 10;
