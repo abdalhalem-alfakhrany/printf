@@ -16,9 +16,10 @@ int s_handler(char *str, va_list *list)
 	arg = va_arg(*list, char *);
 	if (!arg)
 	{
-		*str = '\0';
-		str++;
-		return (1);
+		char *n = "(null)";
+		memcpy(str, n, 6);
+		str += 6;
+		return (6);
 	}
 	l = strlen(arg);
 	memcpy(str, arg, l);
