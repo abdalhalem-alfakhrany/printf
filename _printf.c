@@ -65,7 +65,7 @@ int _printf(const char *format, ...)
 
 	for (i = 0; i < str_size; i++)
 	{
-		if (str[i] == '%' && !str[i + 1])
+		if (str[i] == '%' && str_size == i + 1)
 			return (-1);
 		putchar(str[i]);
 	}
