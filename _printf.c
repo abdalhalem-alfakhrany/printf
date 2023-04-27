@@ -14,6 +14,8 @@ int handel_specifires(va_list *list, const char *format, char *str)
 		{'c', c_handler},
 		{'%', percentage_handler},
 		{'s', s_handler},
+		{'d', d_handler},
+		{'i', i_handler},
 		{'S', c_handler}
 	};
 
