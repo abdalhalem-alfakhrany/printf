@@ -24,7 +24,7 @@ int handel_specifires(va_list *list, const char *format, char *str)
 	/*TODO: may format ahs null char inside it use strlen to calculate size */
 	while (format[i])
 	{
-		if (format[i] != '%')
+		if (format[i] != '%' || (format[i] == '%' && !format[i + 1]))
 		{
 			str[str_size++] = format[i];
 			i++;
@@ -65,7 +65,7 @@ int _printf(const char *format, ...)
 
 	for (i = 0; i < str_size; i++)
 	{
-		if (str[i] == '%' && str_size == i + 1)
+		if (str[i] == '%' && !str[i + 1])
 			return (-1);
 		putchar(str[i]);
 	}
