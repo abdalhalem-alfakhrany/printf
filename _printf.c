@@ -16,12 +16,14 @@ int handel_specifires(va_list *list, const char *format, char *str)
 		{'s', s_handler},
 		{'d', d_handler},
 		{'i', i_handler},
-		{'b', b_handler},
+		/*
+		 * {'b', b_handler},
 		{'r', U_handler},
 		{'x', U_handler},
 		{'X', U_handler},
 		{'o', U_handler},
 		{'u', U_handler},
+		*/
 		{'S', c_handler}
 	};
 
