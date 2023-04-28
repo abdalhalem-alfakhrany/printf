@@ -56,7 +56,8 @@ int _printf(const char *format, ...)
 {
 	va_list list;
 	char str[1024];
-	int str_size = 0, i;
+	int str_size = 0;
+	unsigned int i;
 
 	if (!format)
 		return (-1);
