@@ -28,13 +28,16 @@ int handel_specifires(va_list *list, const char *format, char *str, int *size)
 			continue;
 		}
 		i++;
-		result = percentage_handler(&str[*size], list, &format[i]);
+		result = percentage_handler(&str[*size], &format[i]);
 
 		if (result == -1)
 			return (-1);
+
 		else if (result == -2)
+		{
+			i++;
 			continue;
-		else
+		}
 
 		for (j = 0; ; j++)
 		{
