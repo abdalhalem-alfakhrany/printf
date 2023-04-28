@@ -17,22 +17,17 @@ int handel_specifires(va_list *list, const char *format, char *str)
 		{'d', d_handler},
 		{'i', i_handler},
 		/*
-		 * {'b', b_handler},
-		{'r', U_handler},
-		{'x', U_handler},
-		{'X', U_handler},
-		{'o', U_handler},
-		{'u', U_handler},
-		*/
+		 * {'b', b_handler}, {'r', U_handler}, {'x', U_handler},
+		 * {'X', U_handler},{'o', U_handler}, {'u', U_handler},
+		 */
 		{'S', c_handler}
 	};
 
 	if (!format || !list || !str)
 		return (-1);
-	/*TODO: may format ahs null char inside it use strlen to calculate size */
 	while (format[i])
 	{
-		if (format[i] != '%')  /*TODO if double % at the end should work fint, but it does not! */
+		if (format[i] != '%')
 		{
 			str[str_size++] = format[i];
 			i++;
@@ -45,8 +40,7 @@ int handel_specifires(va_list *list, const char *format, char *str)
 				break;
 			if (handlers[j].specifier == format[i])
 			{
-				str_size += handlers[j].handler(&str[str_size], list);
-				i++;
+				str_size += handlers[j].handler(&str[str_size], list), i++;
 			}
 		}
 	}
