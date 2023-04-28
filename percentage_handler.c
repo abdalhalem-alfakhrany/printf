@@ -8,18 +8,15 @@
  */
 int percentage_handler(char *str, const char *format)
 {
-	if (*format != '%')
-		return (-2);
-
 	if (*(format + 1) == '\0')
 		return (-1);
 
+	/*"asdasdas %%"*/
 	if (*(format + 1) == '%')
 	{
 		*str = '%';
-		str++;
 		return (1);
 	}
 
-	return (1);
+	return (0);
 }

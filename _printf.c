@@ -13,9 +13,9 @@ int handel_specifires(va_list *list, const char *format, char *str, int *size)
 	int i = 0, j = 0, result = 1;
 	specifier_handler handlers[] = {
 		{'c', c_handler}, {'s', s_handler}, {'d', d_handler},
-		{'i', i_handler}, {'b', b_handler}, {'r', U_handler},
+		{'i', i_handler},/** {'b', b_handler}, {'r', U_handler},
 		{'x', U_handler}, {'X', U_handler}, {'o', U_handler},
-		{'u', U_handler}, {'S', c_handler}};
+		{'u', U_handler}, */{'S', c_handler}};
 
 	if (!format || !list || !str)
 		return (-1);
@@ -27,18 +27,18 @@ int handel_specifires(va_list *list, const char *format, char *str, int *size)
 			i++;
 			continue;
 		}
-		i++;
 		result = percentage_handler(&str[*size], &format[i]);
 
 		if (result == -1)
 			return (-1);
-
-		else if (result == -2)
+		else if (result == 1)
 		{
-			i++;
+			i += 2;
+			str++;
 			continue;
 		}
-
+		else
+			i++;
 		for (j = 0; ; j++)
 		{
 			if (handlers[j].specifier == 'S')

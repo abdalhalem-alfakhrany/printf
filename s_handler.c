@@ -14,6 +14,8 @@ int s_handler(char *str, va_list *list)
 	if (!str || !list)
 		return (-1);
 	arg = va_arg(*list, char *);
+	if ((unsigned long)list <= (unsigned long)arg)
+		return (-1);
 	if (!arg)
 	{
 		char *n = "(null)";
