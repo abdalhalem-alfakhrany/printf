@@ -7,9 +7,11 @@
  */
 int c_handler(char *str, va_list *list)
 {
-	if (!str || !list)
-		return (-1);
-	*str = va_arg(*list, int);
+	int x = va_arg(*list, int);
+
+	if (x < 0)
+		return (x);
+	*str = x;
 	str++;
 	return (1);
 }
