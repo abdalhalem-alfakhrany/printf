@@ -30,13 +30,24 @@ int handel_specifires(va_list *list, const char *format, char *str)
 			i++;
 			continue;
 		}
-		if (format[i] == '%' && format[i - 1] != '%' && !format[i + 1])
-			return (-1);
 		i++;
+		if (format[i] == '%' && !format[i + 1])
+		{
+			str[str_size++] = '%';
+			str[str_size++] = '%';
+			return (str_size);
+		}
 		for (j = 0; ; j++)
 		{
 			if (handlers[j].specifier == 'S')
+			{
+				if (!format[i + 1])
+				{
+					str[str_size++] = '%';
+					return (str_size);
+				}
 				break;
+			}
 			if (handlers[j].specifier == format[i])
 			{
 				str_size += handlers[j].handler(&str[str_size], list);
@@ -66,10 +77,15 @@ int _printf(const char *format, ...)
 	str_size = handel_specifires(&list, format, str);
 	va_end(list);
 
-	for (i = 0; i < strlen(str); i++)
+	for (i = 0; i < str_size; i++)
 	{
-		/*if (str[i] == '%' && str_size == i + 1 && str[i - 1] != '%')
-			return (-1);*/
+		if (str[i] == '%' && str_size == i + 1 && str[i - 1] != '%')
+			return (-1);
+		if (str[i] == '%' && str[i + 1] == '%' && !str[i + 2])
+		{
+			i++;
+			continue;
+		}
 		putchar(str[i]);
 	}
 	return (str_size);
