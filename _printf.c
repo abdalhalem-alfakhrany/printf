@@ -30,12 +30,14 @@ int handel_specifires(va_list *list, const char *format, char *str)
 	/*TODO: may format ahs null char inside it use strlen to calculate size */
 	while (format[i])
 	{
-		if (format[i] != '%' || (format[i] == '%' && !format[i + 1]))
+		if (format[i] != '%')  /*TODO TODO: if double % at the end should work fint, but it does not! */
 		{
 			str[str_size++] = format[i];
 			i++;
 			continue;
 		}
+		if (format[i] == '%' && format[i - 1] != '%' && !format[i + 1])
+			return (-1);
 		i++;
 		for (j = 0; ; j++)
 		{
@@ -60,7 +62,8 @@ int _printf(const char *format, ...)
 {
 	va_list list;
 	char str[1024];
-	int str_size = 0, i;
+	int str_size = 0;
+	unsigned int i;
 
 	if (!format)
 		return (-1);
@@ -69,10 +72,10 @@ int _printf(const char *format, ...)
 	str_size = handel_specifires(&list, format, str);
 	va_end(list);
 
-	for (i = 0; i < str_size; i++)
+	for (i = 0; i < strlen(str); i++)
 	{
-		if (str[i] == '%' && str_size == i + 1)
-			return (-1);
+		/*if (str[i] == '%' && str_size == i + 1 && str[i - 1] != '%')
+			return (-1);*/
 		putchar(str[i]);
 	}
 	return (str_size);
