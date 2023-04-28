@@ -18,7 +18,7 @@ struct specifier_handler
 };
 
 int _printf(const char *format, ...);
-int handel_specifires(va_list *list, const char *format, char *str);
+int handel_specifires(va_list *list, const char *format, char *str, int *size);
 
 /* specifires handlers functions*/
 int c_handler(char *, va_list *);
@@ -27,6 +27,6 @@ int d_handler(char *, va_list *);
 int i_handler(char *, va_list *);
 int b_handler(char *, va_list *);
 int U_handler(char *, va_list *);
-int percentage_handler(char *, va_list *);
+int percentage_handler(char *, va_list *, const char *);
 
 #endif

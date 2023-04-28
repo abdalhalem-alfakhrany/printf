@@ -5,23 +5,17 @@
  * @list: the vadriadic list
  * @format: the format to insert the spacifires values in
  * @str: the buffer
+ * @size: pointer to size of str
  * Return: size of str buffer
  */
-int handel_specifires(va_list *list, const char *format, char *str)
+int handel_specifires(va_list *list, const char *format, char *str, int *size)
 {
-	int str_size = 0, i = 0, j = 0;
+	int i = 0, j = 0, result = 1;
 	specifier_handler handlers[] = {
-		{'c', c_handler},
-		{'%', percentage_handler},
-		{'s', s_handler},
-		{'d', d_handler},
-		{'i', i_handler},
-		/*
-		 * {'b', b_handler}, {'r', U_handler}, {'x', U_handler},
-		 * {'X', U_handler},{'o', U_handler}, {'u', U_handler},
-		 */
-		{'S', c_handler}
-	};
+		{'c', c_handler}, {'s', s_handler}, {'d', d_handler},
+		{'i', i_handler}, {'b', b_handler}, {'r', U_handler},
+		{'x', U_handler}, {'X', U_handler}, {'o', U_handler},
+		{'u', U_handler}, {'S', c_handler}};
 
 	if (!format || !list || !str)
 		return (-1);
@@ -29,22 +23,30 @@ int handel_specifires(va_list *list, const char *format, char *str)
 	{
 		if (format[i] != '%')
 		{
-			str[str_size++] = format[i];
+			str[(*size)++] = format[i];
 			i++;
 			continue;
 		}
 		i++;
+		result = percentage_handler(&str[*size], list, &format[i]);
+
+		if (result == -1)
+			return (-1);
+		else if (result == -2)
+			continue;
+		else
+
 		for (j = 0; ; j++)
 		{
 			if (handlers[j].specifier == 'S')
 				break;
 			if (handlers[j].specifier == format[i])
 			{
-				str_size += handlers[j].handler(&str[str_size], list), i++;
+				*size += handlers[j].handler(&str[*size], list), i++;
 			}
 		}
 	}
-	return (str_size);
+	return (result);
 }
 
 /**
@@ -56,18 +58,17 @@ int _printf(const char *format, ...)
 {
 	va_list list;
 	char str[1024];
-	int str_size = 0, i;
+	int str_size = 0, i, error_code;
 
 	if (!format)
 		return (-1);
 
 	va_start(list, format);
-	str_size = handel_specifires(&list, format, str);
+	error_code = handel_specifires(&list, format, str, &str_size);
 	va_end(list);
 
 	for (i = 0; i < str_size; i++)
-	{
 		putchar(str[i]);
-	}
-	return (str_size);
+
+	return ((error_code == -1) ? (-1) : (str_size));
 }
