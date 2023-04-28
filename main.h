@@ -25,6 +25,8 @@ int c_handler(char *, va_list *);
 int s_handler(char *, va_list *);
 int d_handler(char *, va_list *);
 int i_handler(char *, va_list *);
+int b_handler(char *, va_list *);
+int U_handler(char *, va_list *);
 int percentage_handler(char *, va_list *);
 
 #endif
