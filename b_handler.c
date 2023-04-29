@@ -8,8 +8,8 @@
  */
 int b_handler(char *str, va_list *list)
 {
-	int x = va_arg(*list , int);
-	int i, got_one, appended_count = 0,	current_bit;
+	int x = va_arg(*list, int);
+	int i, got_one, appended_count = 0, current_bit;
 
 	for (i = 32; i >= 0; i--)
 	{

@@ -1,9 +1,11 @@
 #include "main.h"
 
 /*
-	5^5
- 	5 * 5 * 5 * 5 * 5 
-*/
+ * _pow - power
+ * @base: base
+ * @exponent: the power
+ * Return: the result
+ */
 
 int _pow(int base, int exponent)
 {

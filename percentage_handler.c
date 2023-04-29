@@ -8,13 +8,12 @@
  */
 int percentage_handler(char *str, const char *format)
 {
-	if (*(format + 1) == '\0')
+	if (*(format + 1) == '\0' && *(format - 1) != '%')
 		return (-1);
-
-	/*"asdasdas %%"*/
 	if (*(format + 1) == '%')
 	{
 		*str = '%';
+		str++;
 		return (1);
 	}
 
