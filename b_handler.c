@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * handel_b - handel b spacifier
+ * b_handler - handel b spacifier
  * @str: buffer to but chars in
  * @x: the number
  * Return: the count of char appended
