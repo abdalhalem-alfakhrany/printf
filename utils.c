@@ -1,12 +1,10 @@
 #include "main.h"
-
 /*
- * _pow - power
- * @base: base
+ * _pow - calcilates powers
+ * @base: the base
  * @exponent: the power
- * Return: the result
+ * Return: result
  */
-
 int _pow(int base, int exponent)
 {
 	int i, res = 1;
